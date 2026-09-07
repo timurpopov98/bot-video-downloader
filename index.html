@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bot Video Downloader — Download Any Video, One Click</title>
+<meta name="description" content="Bot Video Downloader is a free Chrome extension that downloads video, audio and subtitles from almost any website in one click. No sign-up, no ads, no limits.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23121018'/%3E%3Cpath d='M22 18h20a4 4 0 0 1 4 4v10.6a4 4 0 0 1-1.5 3.1L34 44.2a2 2 0 0 1-3.2-1.6V34H22a4 4 0 0 1-4-4V22a4 4 0 0 1 4-4Z' fill='%236c5bff'/%3E%3Ccircle cx='40' cy='40' r='3' fill='%2337e6b0'/%3E%3C/svg%3E">
+
+<link rel="stylesheet" href="vendor/fonts/fonts.css">
+<link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- progress bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- custom cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- top news ticker -->
+<div class="ticker-bar" aria-hidden="true">
+  <div class="ticker-track">
+    <span>🔴 NEW — one-click subtitle downloads just landed</span>
+    <span>•</span>
+    <span>Works on YouTube, TikTok, Instagram, X, Facebook &amp; 1000+ sites</span>
+    <span>•</span>
+    <span>100% free — no account, no watermark, no nonsense</span>
+    <span>•</span>
+    <span>🔴 NEW — one-click subtitle downloads just landed</span>
+    <span>•</span>
+    <span>Works on YouTube, TikTok, Instagram, X, Facebook &amp; 1000+ sites</span>
+    <span>•</span>
+    <span>100% free — no account, no watermark, no nonsense</span>
+    <span>•</span>
+  </div>
+</div>
+
+<!-- header -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark"><i class="fa-solid fa-play"></i></span>
+      Bot Video Downloader
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#how" data-cursor-hover>How it works</a>
+      <a href="#features" data-cursor-hover>Features</a>
+      <a href="#sites" data-cursor-hover>Supported sites</a>
+      <a href="#faq" data-cursor-hover>FAQ</a>
+    </nav>
+    <a class="btn btn-primary btn-small" href="https://chromewebstore.google.com/detail/bot-video-downloader-%E2%80%94-hl/nibkammgffehkmeicmoacioimoddidpa" target="_blank" rel="noopener" data-cursor-hover>
+      <i class="fa-brands fa-chrome"></i> Add to Chrome
+    </a>
+    <button class="nav-burger" id="navBurger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- fixed side quick-CTA (persistent, awwwards-tab style) -->
+<a class="side-cta" id="sideCta" href="https://chromewebstore.google.com/detail/bot-video-downloader-%E2%80%94-hl/nibkammgffehkmeicmoacioimoddidpa" target="_blank" rel="noopener" data-cursor-hover>
+  <span>Add to Chrome — it's free</span>
+</a>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <canvas id="heroParticles"></canvas>
+      <div class="hero-glow"></div>
+      <div class="hero-orb"></div>
+    </div>
+
+    <div class="hero-content container">
+      <p class="kicker reveal-up">ONE EXTENSION. EVERY VIDEO.</p>
+      <h1 class="hero-title">
+        <span class="reveal-line"><span>DOWNLOAD</span></span>
+        <span class="reveal-line"><span>ANY VIDEO.</span></span>
+        <span class="reveal-line accent"><span>ONE&nbsp;CLICK.</span></span>
+      </h1>
+      <p class="hero-sub reveal-up">
+        Video, audio and subtitle downloader for HLS, DASH, MP4, WebM and MP3.
+        Works on YouTube, TikTok, Instagram, X and hundreds of other sites — right from your browser.
+      </p>
+      <div class="hero-actions reveal-up">
+        <a class="btn btn-primary btn-large magnetic" href="https://chromewebstore.google.com/detail/bot-video-downloader-%E2%80%94-hl/nibkammgffehkmeicmoacioimoddidpa" target="_blank" rel="noopener" data-cursor-hover>
+          <i class="fa-brands fa-chrome"></i> Add to Chrome — It's Free
+        </a>
+        <a class="btn btn-ghost btn-large magnetic" href="#reel" data-cursor-hover>
+          <i class="fa-solid fa-circle-play"></i> See how it works
+        </a>
+      </div>
+      <p class="hero-note reveal-up"><i class="fa-solid fa-lock"></i> No account &nbsp;·&nbsp; <i class="fa-solid fa-ban"></i> No ads &nbsp;·&nbsp; <i class="fa-solid fa-infinity"></i> No limits</p>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true">
+      <span>SCROLL</span>
+      <div class="scroll-cue-line"></div>
+    </div>
+  </section>
+
+  <!-- ================= TRUST / LOGO MARQUEE ================= -->
+  <section class="trustbar">
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="site-pill"><i class="fa-brands fa-youtube"></i> YouTube</span>
+        <span class="site-pill"><i class="fa-brands fa-tiktok"></i> TikTok</span>
+        <span class="site-pill"><i class="fa-brands fa-instagram"></i> Instagram</span>
+        <span class="site-pill"><i class="fa-brands fa-x-twitter"></i> X / Twitter</span>
+        <span class="site-pill"><i class="fa-brands fa-facebook-f"></i> Facebook</span>
+        <span class="site-pill"><i class="fa-brands fa-vimeo-v"></i> Vimeo</span>
+        <span class="site-pill"><i class="fa-brands fa-twitch"></i> Twitch</span>
+        <span class="site-pill"><i class="fa-brands fa-reddit-alien"></i> Reddit</span>
+        <span class="site-pill"><i class="fa-brands fa-soundcloud"></i> SoundCloud</span>
+        <span class="site-pill"><i class="fa-brands fa-telegram"></i> Telegram</span>
+        <span class="site-pill"><i class="fa-solid fa-plus"></i> 1000+ more</span>
+        <!-- duplicate for seamless loop -->
+        <span class="site-pill"><i class="fa-brands fa-youtube"></i> YouTube</span>
+        <span class="site-pill"><i class="fa-brands fa-tiktok"></i> TikTok</span>
+        <span class="site-pill"><i class="fa-brands fa-instagram"></i> Instagram</span>
+        <span class="site-pill"><i class="fa-brands fa-x-twitter"></i> X / Twitter</span>
+        <span class="site-pill"><i class="fa-brands fa-facebook-f"></i> Facebook</span>
+        <span class="site-pill"><i class="fa-brands fa-vimeo-v"></i> Vimeo</span>
+        <span class="site-pill"><i class="fa-brands fa-twitch"></i> Twitch</span>
+        <span class="site-pill"><i class="fa-brands fa-reddit-alien"></i> Reddit</span>
+        <span class="site-pill"><i class="fa-brands fa-soundcloud"></i> SoundCloud</span>
+        <span class="site-pill"><i class="fa-brands fa-telegram"></i> Telegram</span>
+        <span class="site-pill"><i class="fa-solid fa-plus"></i> 1000+ more</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STATS ================= -->
+  <section class="stats-section">
+    <div class="container stats-grid">
+      <div class="stats-visual reveal-up">
+        <div class="mock-window mock-window-tilt">
+          <div class="mock-topbar"><span></span><span></span><span></span></div>
+          <div class="mock-body">
+            <div class="mock-row"><i class="fa-solid fa-film"></i><div class="mock-lines"><i></i><i></i></div><span class="mock-tag">1080p</span></div>
+            <div class="mock-row"><i class="fa-solid fa-music"></i><div class="mock-lines"><i></i><i></i></div><span class="mock-tag">MP3</span></div>
+            <div class="mock-row"><i class="fa-solid fa-closed-captioning"></i><div class="mock-lines"><i></i><i></i></div><span class="mock-tag">SRT</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="stats-copy">
+        <p class="kicker reveal-up">FROM ONE CLICK, EVERYTHING FOLLOWS</p>
+        <div class="stat-row reveal-up">
+          <span class="stat-num" data-count="1" data-suffix="-Click">0</span>
+          <span class="stat-label">Detect &amp; download — no extra steps</span>
+        </div>
+        <div class="stat-row reveal-up">
+          <span class="stat-num" data-count="100" data-suffix="%">0</span>
+          <span class="stat-label">Free — every feature, no paywall</span>
+        </div>
+        <div class="stat-row reveal-up">
+          <span class="stat-num" data-count="0" data-suffix=" ads">0</span>
+          <span class="stat-label">Ads, trackers or sign-ups required</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CINEMATIC PRODUCT REEL (pinned scrub) ================= -->
+  <section class="reel" id="reel">
+    <div class="reel-pin">
+      <div class="reel-hud" aria-hidden="true">
+        <span id="reelSpeed">0%</span>
+        <span class="reel-hud-label">DOWNLOAD PROGRESS</span>
+      </div>
+
+      <h2 class="reel-headline">
+        <span class="reel-line" data-reel-line="0">ONE CLICK.</span>
+        <span class="reel-line" data-reel-line="1">EVERY FORMAT.</span>
+        <span class="reel-line" data-reel-line="2">ZERO HASSLE.</span>
+      </h2>
+
+      <div class="reel-stage">
+        <div class="browser-frame">
+          <div class="browser-chrome">
+            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+            <div class="browser-url"><i class="fa-solid fa-lock"></i> example.com/watch</div>
+            <div class="ext-icon" id="extIcon"><i class="fa-solid fa-play"></i><span class="ext-badge" id="extBadge">0</span></div>
+          </div>
+          <div class="browser-viewport">
+            <!-- stage 0: video playing -->
+            <div class="reel-stage-layer" data-stage="0">
+              <div class="fake-video">
+                <i class="fa-solid fa-play fake-play"></i>
+                <div class="fake-video-bar"><span></span></div>
+              </div>
+            </div>
+            <!-- stage 1: popup with detected streams -->
+            <div class="reel-stage-layer" data-stage="1">
+              <div class="ext-popup">
+                <div class="ext-popup-head">Bot Video Downloader <i class="fa-solid fa-gear"></i></div>
+                <div class="ext-popup-row"><i class="fa-solid fa-film"></i><span>Video · 1080p</span><em>MP4</em></div>
+                <div class="ext-popup-row"><i class="fa-solid fa-music"></i><span>Audio track</span><em>MP3</em></div>
+                <div class="ext-popup-row"><i class="fa-solid fa-closed-captioning"></i><span>Subtitles · EN</span><em>SRT</em></div>
+              </div>
+            </div>
+            <!-- stage 2: downloading -->
+            <div class="reel-stage-layer" data-stage="2">
+              <div class="ext-popup">
+                <div class="ext-popup-head">Downloading…</div>
+                <div class="ext-progress"><div class="ext-progress-fill" id="reelFill"></div></div>
+                <div class="ext-progress-label"><span id="reelPct">0%</span><span>1080p · MP4</span></div>
+              </div>
+            </div>
+            <!-- stage 3: done -->
+            <div class="reel-stage-layer" data-stage="3">
+              <div class="ext-popup ext-popup-done">
+                <i class="fa-solid fa-circle-check"></i>
+                <p>Saved to Downloads</p>
+                <span>video-1080p.mp4 · 214 MB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <section class="how" id="how">
+    <div class="container">
+      <p class="kicker reveal-up center">GET STARTED IN SECONDS</p>
+      <h2 class="section-title center reveal-up">How to download a video</h2>
+      <p class="section-sub center reveal-up">Install once. Then it works everywhere, every time.</p>
+
+      <div class="steps">
+        <div class="step reveal-up">
+          <span class="step-num">01</span>
+          <div class="step-mock">
+            <div class="mock-window">
+              <div class="mock-topbar"><span></span><span></span><span></span></div>
+              <div class="mock-cws">
+                <div class="mock-cws-icon"><i class="fa-solid fa-play"></i></div>
+                <div>
+                  <strong>Bot Video Downloader</strong>
+                  <em>chromewebstore.google.com</em>
+                </div>
+                <button class="mock-btn">Add to Chrome</button>
+              </div>
+            </div>
+          </div>
+          <h3>Install the extension</h3>
+          <p>One click from the Chrome Web Store. No account or setup needed.</p>
+        </div>
+
+        <div class="step reveal-up">
+          <span class="step-num">02</span>
+          <div class="step-mock">
+            <div class="mock-window">
+              <div class="mock-topbar"><span></span><span></span><span></span></div>
+              <div class="mock-video-area"><i class="fa-solid fa-play"></i></div>
+            </div>
+          </div>
+          <h3>Open any video page</h3>
+          <p>Start playing a video. The toolbar icon lights up when media is detected.</p>
+        </div>
+
+        <div class="step reveal-up">
+          <span class="step-num">03</span>
+          <div class="step-mock">
+            <div class="mock-window">
+              <div class="mock-topbar"><span></span><span></span><span></span></div>
+              <div class="mock-body">
+                <div class="mock-row"><i class="fa-solid fa-film"></i><div class="mock-lines"><i></i><i></i></div><button class="mock-mini-btn">Download</button></div>
+              </div>
+            </div>
+          </div>
+          <h3>Choose quality &amp; download</h3>
+          <p>Pick a resolution, format or track — saved in one click.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FEATURES ================= -->
+  <section class="features" id="features">
+    <div class="marquee marquee-dim">
+      <div class="marquee-track">
+        <span>HLS STREAMING</span><span>·</span><span>DASH STREAMING</span><span>·</span>
+        <span>LIVE RECORDING</span><span>·</span><span>AUDIO EXTRACT</span><span>·</span>
+        <span>SUBTITLE EXPORT</span><span>·</span><span>NO SIGN-UP</span><span>·</span>
+        <span>NO TRACKING</span><span>·</span><span>4K QUALITY</span><span>·</span>
+        <span>BATCH DOWNLOAD</span><span>·</span>
+        <span>HLS STREAMING</span><span>·</span><span>DASH STREAMING</span><span>·</span>
+        <span>LIVE RECORDING</span><span>·</span><span>AUDIO EXTRACT</span><span>·</span>
+        <span>SUBTITLE EXPORT</span><span>·</span><span>NO SIGN-UP</span><span>·</span>
+        <span>NO TRACKING</span><span>·</span><span>4K QUALITY</span><span>·</span>
+        <span>BATCH DOWNLOAD</span><span>·</span>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="kicker reveal-up center">CORE FEATURES</p>
+      <h2 class="section-title center reveal-up">Everything you need. Nothing you don't.</h2>
+
+      <div class="feature-grid">
+        <div class="feature-card reveal-up" data-tilt>
+          <i class="fa-solid fa-layer-group"></i>
+          <h3>Any format</h3>
+          <p>MP4, WebM, MP3 — plus HLS (.m3u8) and DASH (.mpd) streams.</p>
+        </div>
+        <div class="feature-card reveal-up" data-tilt>
+          <i class="fa-solid fa-object-group"></i>
+          <h3>Batch downloads</h3>
+          <p>Grab every video detected on a page in a single pass.</p>
+        </div>
+        <div class="feature-card reveal-up" data-tilt>
+          <i class="fa-solid fa-expand"></i>
+          <h3>Original quality</h3>
+          <p>Stream copy without re-encoding — pixel-perfect, as uploaded.</p>
+        </div>
+        <div class="feature-card reveal-up" data-tilt>
+          <i class="fa-solid fa-closed-captioning"></i>
+          <h3>Subtitle downloader</h3>
+          <p>Save subtitles as SRT or VTT, in any available language.</p>
+        </div>
+        <div class="feature-card reveal-up" data-tilt>
+          <i class="fa-solid fa-music"></i>
+          <h3>Audio extractor</h3>
+          <p>Pull a clean MP3 track out of any video or stream.</p>
+        </div>
+        <div class="feature-card reveal-up" data-tilt>
+          <i class="fa-solid fa-bolt"></i>
+          <h3>Smart detection</h3>
+          <p>The toolbar icon lights up the instant media is found.</p>
+        </div>
+        <div class="feature-card reveal-up" data-tilt>
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <h3>Download history</h3>
+          <p>Every file you've saved, one click away — no digging.</p>
+        </div>
+        <div class="feature-card reveal-up" data-tilt>
+          <i class="fa-solid fa-shield-halved"></i>
+          <h3>Private by design</h3>
+          <p>Everything runs locally in your browser. No accounts, no ads.</p>
+        </div>
+        <div class="feature-card reveal-up" data-tilt>
+          <i class="fa-solid fa-globe"></i>
+          <h3>Works almost everywhere</h3>
+          <p>YouTube, TikTok, Instagram, X, Facebook and 1000+ more sites.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SUPPORTED SITES ================= -->
+  <section class="sites" id="sites">
+    <div class="container">
+      <p class="kicker reveal-up center">SUPPORTED EVERYWHERE</p>
+      <h2 class="section-title center reveal-up">If it plays a video, we can grab it.</h2>
+    </div>
+    <div class="sites-marquees">
+      <div class="marquee">
+        <div class="marquee-track">
+          <span class="site-chip"><i class="fa-brands fa-youtube"></i>YouTube</span>
+          <span class="site-chip"><i class="fa-brands fa-instagram"></i>Instagram</span>
+          <span class="site-chip"><i class="fa-brands fa-tiktok"></i>TikTok</span>
+          <span class="site-chip"><i class="fa-brands fa-facebook-f"></i>Facebook</span>
+          <span class="site-chip"><i class="fa-brands fa-x-twitter"></i>X / Twitter</span>
+          <span class="site-chip"><i class="fa-brands fa-vimeo-v"></i>Vimeo</span>
+          <span class="site-chip"><i class="fa-brands fa-youtube"></i>YouTube</span>
+          <span class="site-chip"><i class="fa-brands fa-instagram"></i>Instagram</span>
+          <span class="site-chip"><i class="fa-brands fa-tiktok"></i>TikTok</span>
+          <span class="site-chip"><i class="fa-brands fa-facebook-f"></i>Facebook</span>
+          <span class="site-chip"><i class="fa-brands fa-x-twitter"></i>X / Twitter</span>
+          <span class="site-chip"><i class="fa-brands fa-vimeo-v"></i>Vimeo</span>
+        </div>
+      </div>
+      <div class="marquee marquee-reverse">
+        <div class="marquee-track">
+          <span class="site-chip"><i class="fa-brands fa-twitch"></i>Twitch</span>
+          <span class="site-chip"><i class="fa-brands fa-reddit-alien"></i>Reddit</span>
+          <span class="site-chip"><i class="fa-brands fa-soundcloud"></i>SoundCloud</span>
+          <span class="site-chip"><i class="fa-brands fa-telegram"></i>Telegram</span>
+          <span class="site-chip"><i class="fa-brands fa-pinterest-p"></i>Pinterest</span>
+          <span class="site-chip"><i class="fa-solid fa-plus"></i>1000+ more sites</span>
+          <span class="site-chip"><i class="fa-brands fa-twitch"></i>Twitch</span>
+          <span class="site-chip"><i class="fa-brands fa-reddit-alien"></i>Reddit</span>
+          <span class="site-chip"><i class="fa-brands fa-soundcloud"></i>SoundCloud</span>
+          <span class="site-chip"><i class="fa-brands fa-telegram"></i>Telegram</span>
+          <span class="site-chip"><i class="fa-brands fa-pinterest-p"></i>Pinterest</span>
+          <span class="site-chip"><i class="fa-solid fa-plus"></i>1000+ more sites</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <!-- NOTE: placeholder copy — swap in real Chrome Web Store reviews once published. -->
+  <section class="testimonials">
+    <div class="container">
+      <p class="kicker reveal-up center">TRUSTED BY CHROME USERS</p>
+      <h2 class="section-title center reveal-up">Add your real reviews here</h2>
+      <p class="section-sub center reveal-up">Placeholder cards below — replace with genuine Chrome Web Store reviews once you have them.</p>
+
+      <div class="testimonial-grid">
+        <div class="t-card reveal-up"><div class="t-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Exactly what I needed — clean interface, quick downloads."</p><span>Chrome user</span></div>
+        <div class="t-card reveal-up"><div class="t-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Works where other extensions fail. Simple and fast."</p><span>Chrome user</span></div>
+        <div class="t-card reveal-up"><div class="t-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"No paywalls, no nonsense. This is how it should be done."</p><span>Chrome user</span></div>
+        <div class="t-card reveal-up"><div class="t-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Subtitle downloads are a lifesaver. Highly recommend."</p><span>Chrome user</span></div>
+        <div class="t-card reveal-up"><div class="t-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"Detects streams other tools miss entirely. Great job."</p><span>Chrome user</span></div>
+        <div class="t-card reveal-up"><div class="t-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>"By far the best free extension I've found for this."</p><span>Chrome user</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= BIG CTA ================= -->
+  <section class="cta-band">
+    <div class="cta-glow"></div>
+    <div class="container cta-inner">
+      <h2 class="cta-title reveal-up">STOP SEARCHING.<br>START DOWNLOADING.</h2>
+      <p class="reveal-up">One-time install. Unlimited downloads. Forever free.</p>
+      <a class="cta-circle magnetic" href="https://chromewebstore.google.com/detail/bot-video-downloader-%E2%80%94-hl/nibkammgffehkmeicmoacioimoddidpa" target="_blank" rel="noopener" data-cursor-hover>
+        <svg viewBox="0 0 200 200" class="cta-circle-text"><path id="circlePath" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"></path><text><textPath href="#circlePath">ADD TO CHROME • ADD TO CHROME • </textPath></text></svg>
+        <i class="fa-brands fa-chrome"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="faq" id="faq">
+    <div class="container faq-grid">
+      <div>
+        <p class="kicker reveal-up">F.A.Q</p>
+        <h2 class="section-title reveal-up">Straightforward answers, so you can start downloading with confidence.</h2>
+        <p class="section-sub reveal-up">Still have questions? <a href="mailto:support@botvideodownloader.com">Email us</a>.</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal-up">
+          <button class="faq-q" data-cursor-hover>Which sites does Bot Video Downloader work on?<i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-a"><p>YouTube, TikTok, Instagram, Facebook, X/Twitter, Vimeo, Twitch and over a thousand other sites that stream MP4, HLS or DASH video.</p></div>
+        </div>
+        <div class="faq-item reveal-up">
+          <button class="faq-q" data-cursor-hover>How do I download a video from YouTube?<i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-a"><p>Open the video, click the Bot Video Downloader icon once it lights up, pick a quality, and hit download.</p></div>
+        </div>
+        <div class="faq-item reveal-up">
+          <button class="faq-q" data-cursor-hover>Is it really completely free?<i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-a"><p>Yes. Every feature is free, with no account, subscription or hidden limits.</p></div>
+        </div>
+        <div class="faq-item reveal-up">
+          <button class="faq-q" data-cursor-hover>Can I choose the quality before downloading?<i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-a"><p>Yes — pick the exact resolution, format or audio/subtitle track from the detected list.</p></div>
+        </div>
+        <div class="faq-item reveal-up">
+          <button class="faq-q" data-cursor-hover>Does it work with live streams?<i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-a"><p>Bot Video Downloader detects HLS/DASH streams, including many live broadcasts, as they play.</p></div>
+        </div>
+        <div class="faq-item reveal-up">
+          <button class="faq-q" data-cursor-hover>Is my data private?<i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-a"><p>Downloads are processed locally in your browser. We don't sell your data or track your browsing.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container footer-top">
+    <p class="footer-tagline">One extension.<br>Every video, downloaded.</p>
+    <div class="footer-cols">
+      <div>
+        <h4>Product</h4>
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#sites">Supported sites</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="https://chromewebstore.google.com/detail/bot-video-downloader-%E2%80%94-hl/nibkammgffehkmeicmoacioimoddidpa" target="_blank" rel="noopener">Chrome Web Store <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <a href="#">Changelog</a>
+        <a href="mailto:support@botvideodownloader.com">Support</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of use</a>
+        <a href="mailto:support@botvideodownloader.com">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© <span id="year"></span> Bot Video Downloader. All rights reserved.</span>
+    <span>Not affiliated with YouTube, TikTok, Instagram, Meta, or X.</span>
+  </div>
+  <div class="footer-wordmark" aria-hidden="true">BOT VIDEO DOWNLOADER</div>
+</footer>
+
+<script src="vendor/gsap/gsap.min.js"></script>
+<script src="vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis/lenis.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
