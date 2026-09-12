@@ -5620,9 +5620,33 @@ function drawParticles(){
 initParticles();
 window.addEventListener('resize', resizeCanvas);
 
+/* ================= debug badge (temporary, for diagnosing the mascot not
+   showing up in some environments — safe to remove once confirmed working) */
+const debugBadge = document.createElement('div');
+debugBadge.id = 'debugBadge';
+Object.assign(debugBadge.style, {
+  position: 'fixed', bottom: '8px', left: '8px', zIndex: 99999,
+  background: 'rgba(0,0,0,.8)', color: '#0f0', font: '11px monospace',
+  padding: '6px 10px', borderRadius: '6px', maxWidth: '90vw',
+  whiteSpace: 'pre-wrap', pointerEvents: 'none',
+});
+document.body.appendChild(debugBadge);
+function setDebug(msg){ debugBadge.textContent = '[mascot debug] ' + msg; console.log('[mascot debug]', msg); }
+window.addEventListener('error', (e) => setDebug('window error: ' + e.message));
+window.addEventListener('unhandledrejection', (e) => setDebug('unhandled rejection: ' + (e.reason && e.reason.message || e.reason)));
+setDebug('booting…');
+
 /* ================= 3D flying mascot ================= */
 const mascotCanvas = document.getElementById('mascotCanvas');
-const mrenderer = new THREE.WebGLRenderer({ canvas: mascotCanvas, antialias: true, alpha: true });
+let mrenderer;
+try {
+  setDebug('THREE=' + typeof THREE + ' GLTFLoader=' + (typeof THREE !== 'undefined' && typeof THREE.GLTFLoader));
+  mrenderer = new THREE.WebGLRenderer({ canvas: mascotCanvas, antialias: true, alpha: true });
+  setDebug('renderer created OK');
+} catch (e) {
+  setDebug('WebGLRenderer FAILED: ' + e.message);
+  throw e;
+}
 mrenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 mrenderer.setSize(window.innerWidth, window.innerHeight);
 mrenderer.outputEncoding = THREE.sRGBEncoding;
@@ -5648,6 +5672,7 @@ let mascotLoaded = false;
 
 const mgltf = new THREE.GLTFLoader();
 
+setDebug('fetching model…');
 mgltf.load('assets/mascot.glb', (gltf) => {
   const model = gltf.scene;
   const box = new THREE.Box3().setFromObject(model);
@@ -5657,7 +5682,13 @@ mgltf.load('assets/mascot.glb', (gltf) => {
   model.scale.setScalar(1 / Math.max(size.x, size.y, size.z)); // normalize to ~1 unit
   mascotGroup.add(model);
   mascotLoaded = true;
-}, undefined, (err) => { console.warn('mascot model failed to load', err); });
+  setDebug('model loaded OK, tris=' + (model.children[0] && model.children[0].geometry ? model.children[0].geometry.index.count/3 : '?'));
+}, (xhr) => {
+  if (xhr.total) setDebug('loading model… ' + Math.round((xhr.loaded/xhr.total)*100) + '%');
+}, (err) => {
+  console.warn('mascot model failed to load', err);
+  setDebug('MODEL LOAD FAILED: ' + (err && err.message ? err.message : JSON.stringify(err)));
+});
 
 function screenToWorld(px, py, z){
   const ndcX = (px / window.innerWidth) * 2 - 1;
@@ -5754,8 +5785,10 @@ function animateMascot(now){
 
   mrenderer.render(mscene, mcamera);
   drawParticles();
+  if (!window.__firstRenderLogged) { window.__firstRenderLogged = true; setDebug('render loop running, model loaded=' + mascotLoaded); }
 }
 requestAnimationFrame(animateMascot);
+setTimeout(() => { if (!mascotLoaded) setDebug('STILL NOT LOADED after 5s — check network/console'); }, 5000);
 
 window.addEventListener('resize', () => {
   mcamera.aspect = window.innerWidth / window.innerHeight;
