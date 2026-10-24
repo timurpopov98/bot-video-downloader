@@ -1,0 +1,325 @@
+<title>Lucent Tattoo Studio</title>
+  <meta name="description" content="Lucent Tattoo Studio, Sofia: five tattoo artists and a resident piercer. 51 Veslets St.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prata&family=Manrope:wght@400;500;600&family=Marck+Script&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" as="image" href="assets/img/paper.jpg">
+
+
+  <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+
+  <!-- shared SVG: rough ink stroke used for scribbles -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="flame" viewBox="0 0 200 420"><path d="M70 418 C 40 360, 60 300, 96 250 C 60 250, 34 222, 22 180 C 50 204, 80 206, 100 196 C 74 160, 70 110, 92 64 C 96 112, 112 146, 132 160 C 130 110, 146 56, 190 4 C 170 70, 172 130, 160 190 C 152 240, 120 280, 112 320 C 104 360, 110 390, 130 418 Z"/></symbol>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>
+  </svg>
+
+  <header class="nav" data-nav>
+    <a class="nav__logo" href="#top" aria-label="Lucent Tattoo Studio"><span class="nav__dot" aria-hidden="true"></span>Lucent</a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="#artists" data-i18n="nav.artists">Artists</a>
+      <a href="#piercing" data-i18n="nav.piercing">Piercing</a>
+      <a href="#events" data-i18n="nav.events">Events</a>
+      <a href="#journal" data-i18n="nav.journal">Journal</a>
+      <a href="#visit" data-i18n="nav.visit">Visit</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="bg" aria-pressed="false">BG</button>
+    </div>
+    <a class="nav__book" href="#visit" data-i18n="nav.book">Book a session</a>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero__frame scrap" data-drop>
+        <div class="torn" data-torn="hero">
+          <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.jpg">
+            <source src="assets/video/hero.mp4" type="video/mp4">
+          </video>
+        </div>
+        <span class="tape tape--tl"></span>
+        <span class="tape tape--br"></span>
+      </div>
+
+      <svg class="flame flame--hero" viewBox="0 0 200 420" aria-hidden="true"><use href="#flame"/></svg>
+
+      <h1 class="hero__word" aria-label="Lucent">
+        <span class="hero__letters" aria-hidden="true"><span>L</span><span>u</span><span>c</span><span>e</span><span>n</span><span>t</span></span>
+      </h1>
+
+      <p class="hero__sub" data-drop data-i18n="hero.sub">Tattoo &amp; piercing studio</p>
+
+      <p class="note hero__note" data-drop>
+        <span data-i18n="hero.note">five artists and a piercer in Sofia</span>
+        <svg class="note__arrow" viewBox="0 0 120 60" aria-hidden="true"><path d="M4 8 C 40 4, 80 18, 108 48 M108 48 l-14 -2 M108 48 l-1 -14" /></svg>
+      </p>
+
+      <button class="hero__pause" type="button" data-pause aria-pressed="false">
+        <span data-i18n="hero.pause">Pause film</span>
+      </button>
+    </section>
+
+    <!-- MANIFESTO -->
+    <section class="manifesto" aria-labelledby="manifesto-title">
+      <div class="manifesto__text">
+        <h2 id="manifesto-title" class="display" data-split data-i18n="manifesto.title">Every piece starts as a sketch on paper.</h2>
+        <p class="lede" data-reveal data-i18n="manifesto.body">We draw each tattoo for one person and one place on the body. Bring an idea, a photo, a half-finished thought. We sit down with you, sketch it out and redraw it until it feels like yours.</p>
+        <a class="link-ink" href="#artists" data-reveal data-i18n="manifesto.cta">Meet the artists</a>
+      </div>
+
+      <div class="collage" aria-hidden="true">
+        <figure class="scrap collage__a" data-speed="-0.12" data-place>
+          <div class="torn" data-torn><img src="assets/img/still-2.jpg" alt="" loading="lazy"></div>
+          <span class="tape tape--t"></span>
+        </figure>
+        <figure class="scrap collage__b" data-speed="0.08" data-place>
+          <div class="torn" data-torn><img src="assets/img/still-7.jpg" alt="" loading="lazy"></div>
+          <span class="tape tape--r"></span>
+        </figure>
+        <figure class="scrap collage__c paper-slip" data-speed="-0.04" data-place>
+          <div class="torn" data-torn><p class="slip" data-i18n="collage.slip">stencil, 14:20, left forearm</p></div>
+        </figure>
+        <svg class="flame flame--collage" viewBox="0 0 200 420" aria-hidden="true"><use href="#flame"/></svg>
+        <svg class="collage__scribble" viewBox="0 0 300 300"><path data-draw d="M40 210 C 60 120, 150 60, 230 90 S 260 220, 160 230 S 70 170, 120 120" /></svg>
+      </div>
+    </section>
+
+    <!-- TAPE MARQUEE -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__track" data-marquee>
+        <span data-i18n="marquee.1">custom work</span><span data-i18n="marquee.2">fine line</span><span data-i18n="marquee.3">blackwork</span><span data-i18n="marquee.4">flash days</span><span data-i18n="marquee.5">piercing</span><span data-i18n="marquee.6">cover-ups</span>
+        <span data-i18n="marquee.1">custom work</span><span data-i18n="marquee.2">fine line</span><span data-i18n="marquee.3">blackwork</span><span data-i18n="marquee.4">flash days</span><span data-i18n="marquee.5">piercing</span><span data-i18n="marquee.6">cover-ups</span>
+      </div>
+    </div>
+
+    <!-- ARTISTS -->
+    <section class="artists" id="artists" aria-labelledby="artists-title">
+      <div class="artists__pin">
+        <header class="section-head">
+          <h2 id="artists-title" class="display" data-split data-i18n="artists.title">The artists</h2>
+          <p class="section-head__aside" data-reveal data-i18n="artists.aside">Five people, five hands. Pick by style, or ask us and we will match you.</p>
+        </header>
+
+        <div class="board" data-board>
+          <article class="card scrap" data-card style="--r:-3deg">
+            <div class="torn" data-torn>
+              <div class="card__photo">
+                <img src="assets/img/artists/hanna.jpg" alt="Hanna" loading="lazy" onerror="this.remove()">
+                <span class="note" data-i18n="artists.photo">photo coming</span>
+              </div>
+              <div class="card__body">
+                <h3 class="card__name">Hanna</h3>
+                <ul class="card__styles"><li data-i18n="s.graphic"></li><li data-i18n="s.detailed"></li><li data-i18n="s.fineline"></li></ul>
+                <a class="card__ig" href="https://www.instagram.com/annetemma/" target="_blank" rel="noopener">@annetemma</a>
+              </div>
+            </div>
+            <span class="sticker" aria-hidden="true">🦊</span>
+            <span class="tape tape--t"></span>
+          </article>
+          <article class="card scrap" data-card style="--r:2.5deg">
+            <div class="torn" data-torn>
+              <div class="card__photo">
+                <img src="assets/img/artists/boris.jpg" alt="Boris" loading="lazy" onerror="this.remove()">
+                <span class="note" data-i18n="artists.photo">photo coming</span>
+              </div>
+              <div class="card__body">
+                <h3 class="card__name">Boris</h3>
+                <ul class="card__styles"><li data-i18n="s.neotrad"></li><li data-i18n="s.newschool"></li><li data-i18n="s.ornamental"></li></ul>
+                <a class="card__ig" href="https://www.instagram.com/strugarev.ink/" target="_blank" rel="noopener">@strugarev.ink</a>
+              </div>
+            </div>
+            <span class="sticker" aria-hidden="true">🐍</span>
+            <span class="tape tape--t"></span>
+          </article>
+          <article class="card scrap" data-card style="--r:-1.5deg">
+            <div class="torn" data-torn>
+              <div class="card__photo">
+                <img src="assets/img/artists/nikolay.jpg" alt="Nikolay" loading="lazy" onerror="this.remove()">
+                <span class="note" data-i18n="artists.photo">photo coming</span>
+              </div>
+              <div class="card__body">
+                <h3 class="card__name">Nikolay</h3>
+                <ul class="card__styles"><li data-i18n="s.bgreal"></li><li data-i18n="s.surreal"></li></ul>
+                <a class="card__ig" href="https://www.instagram.com/nikolay.genev/" target="_blank" rel="noopener">@nikolay.genev</a>
+              </div>
+            </div>
+            <span class="sticker" aria-hidden="true">🐺</span>
+            <span class="tape tape--t"></span>
+          </article>
+          <article class="card scrap" data-card style="--r:3.5deg">
+            <div class="torn" data-torn>
+              <div class="card__photo">
+                <img src="assets/img/artists/daria.jpg" alt="Daria" loading="lazy" onerror="this.remove()">
+                <span class="note" data-i18n="artists.photo">photo coming</span>
+              </div>
+              <div class="card__body">
+                <h3 class="card__name">Daria</h3>
+                <ul class="card__styles"><li data-i18n="s.neotrad"></li><li data-i18n="s.newschool"></li></ul>
+                <a class="card__ig" href="https://www.instagram.com/candyink.tattoo/" target="_blank" rel="noopener">@candyink.tattoo</a>
+              </div>
+            </div>
+            <span class="sticker" aria-hidden="true">🐞</span>
+            <span class="tape tape--t"></span>
+          </article>
+          <article class="card scrap" data-card style="--r:-2.5deg">
+            <div class="torn" data-torn>
+              <div class="card__photo">
+                <img src="assets/img/artists/sasha.jpg" alt="Sasha" loading="lazy" onerror="this.remove()">
+                <span class="note" data-i18n="artists.photo">photo coming</span>
+              </div>
+              <div class="card__body">
+                <h3 class="card__name">Sasha</h3>
+                <ul class="card__styles"><li data-i18n="s.japanese"></li></ul>
+                <a class="card__ig" href="https://www.instagram.com/vlaykov.tattoo/" target="_blank" rel="noopener">@vlaykov.tattoo</a>
+              </div>
+            </div>
+            <span class="sticker" aria-hidden="true">🐲</span>
+            <span class="tape tape--t"></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PIERCING: its own category -->
+    <section class="piercing" id="piercing" aria-labelledby="piercing-title">
+      <svg class="piercing__rings" viewBox="0 0 600 600" aria-hidden="true">
+        <circle data-draw cx="300" cy="300" r="250"/>
+        <circle data-draw cx="300" cy="300" r="190"/>
+        <circle data-draw cx="300" cy="300" r="120"/>
+      </svg>
+      <div class="piercing__inner">
+        <p class="note piercing__note" data-reveal data-i18n="piercing.note">a separate room, a separate craft</p>
+        <h2 id="piercing-title" class="display display--xl" data-split data-i18n="piercing.title">Piercing</h2>
+        <div class="piercing__grid">
+          <article class="piercer scrap" data-place style="--r:-2deg">
+            <div class="torn" data-torn>
+              <div class="card__photo card__photo--tall">
+                <img src="assets/img/artists/viga.jpg" alt="Viga" loading="lazy" onerror="this.remove()">
+                <span class="note" data-i18n="artists.photo">photo coming</span>
+              </div>
+              <div class="card__body">
+                <h3 class="card__name">Viga</h3>
+                <p class="card__style" data-i18n="piercing.role">Resident piercer</p>
+                <a class="card__ig" href="https://www.instagram.com/wigga.tatts/" target="_blank" rel="noopener">@wigga.tatts</a>
+              </div>
+            </div>
+            <span class="sticker" aria-hidden="true">🔮</span>
+            <span class="tape tape--t"></span>
+          </article>
+          <div class="piercing__info">
+            <p class="lede" data-reveal data-i18n="piercing.body">Ear projects, nose, lip and more. Every piercing is done with a single-use needle, and we go through aftercare with you before you leave.</p>
+            <ul class="piercing__list" data-reveal>
+              <li data-i18n="piercing.l1">Lobe and ear curation</li>
+              <li data-i18n="piercing.l2">Helix, conch, tragus</li>
+              <li data-i18n="piercing.l3">Nostril and septum</li>
+              <li data-i18n="piercing.l4">Jewellery change and fitting</li>
+            </ul>
+            <a class="link-ink" href="#visit" data-reveal data-i18n="piercing.cta">Book a piercing</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="events" id="events" aria-labelledby="events-title">
+      <header class="section-head">
+        <h2 id="events-title" class="display" data-split data-i18n="events.title">Events</h2>
+        <p class="section-head__aside" data-reveal data-i18n="events.aside">Flash days, guest artists and evenings at the studio.</p>
+      </header>
+      <div class="flyers">
+        <!-- Placeholder events: replace with real dates -->
+        <article class="flyer scrap" data-place style="--r:-2deg">
+          <div class="torn" data-torn>
+            <p class="flyer__date note" data-i18n="events.soon">date soon</p>
+            <h3 class="flyer__title" data-i18n="events.e1">Flash day</h3>
+            <p data-i18n="events.e1d">A sheet of ready designs, walk-ins only, first come first served.</p>
+          </div>
+          <span class="tape tape--t"></span>
+        </article>
+        <article class="flyer flyer--ink scrap" data-place style="--r:1.5deg">
+          <div class="torn" data-torn>
+            <p class="flyer__date note" data-i18n="events.soon">date soon</p>
+            <h3 class="flyer__title" data-i18n="events.e2">Guest spot</h3>
+            <p data-i18n="events.e2d">A visiting artist works from our studio for a week.</p>
+          </div>
+          <span class="tape tape--t"></span>
+        </article>
+        <article class="flyer scrap" data-place style="--r:-1deg">
+          <div class="torn" data-torn>
+            <p class="flyer__date note" data-i18n="events.soon">date soon</p>
+            <h3 class="flyer__title" data-i18n="events.e3">Open studio</h3>
+            <p data-i18n="events.e3d">Come in, see the space, look through portfolios and ask questions.</p>
+          </div>
+          <span class="tape tape--t"></span>
+        </article>
+      </div>
+    </section>
+
+    <!-- JOURNAL / BLOG -->
+    <section class="journal" id="journal" aria-labelledby="journal-title">
+      <header class="section-head">
+        <h2 id="journal-title" class="display" data-split data-i18n="journal.title">Journal</h2>
+        <p class="section-head__aside" data-reveal data-i18n="journal.aside">Notes from the studio: aftercare, preparation, new work.</p>
+      </header>
+      <div class="clippings">
+        <a class="clip scrap" href="#journal" data-place style="--r:1deg">
+          <div class="torn" data-torn>
+            <img src="assets/img/still-4.5.jpg" alt="" loading="lazy">
+            <h3 data-i18n="journal.p1">Your first tattoo: how to prepare</h3>
+            <p data-i18n="journal.p1d">Sleep, food, what to wear and what to bring.</p>
+          </div>
+        </a>
+        <a class="clip clip--text scrap" href="#journal" data-place style="--r:-2deg">
+          <div class="torn" data-torn>
+            <h3 data-i18n="journal.p2">Aftercare, day by day</h3>
+            <p data-i18n="journal.p2d">What the first two weeks look like and when to call us.</p>
+          </div>
+        </a>
+        <a class="clip scrap" href="#journal" data-place style="--r:2deg">
+          <div class="torn" data-torn>
+            <img src="assets/img/still-11.5.jpg" alt="" loading="lazy">
+            <h3 data-i18n="journal.p3">Choosing jewellery for a new piercing</h3>
+            <p data-i18n="journal.p3d">Titanium, gold and the right size for healing.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- VISIT / BOOK -->
+    <section class="visit" id="visit" aria-labelledby="visit-title">
+      <h2 id="visit-title" class="display display--xl" data-split data-i18n="visit.title">Come by the studio</h2>
+      <div class="visit__grid">
+        <p class="lede" data-reveal data-i18n="visit.body">Write to us with your idea, the placement and a rough size. We reply within two working days.</p>
+        <dl class="visit__info" data-reveal>
+          <div><dt data-i18n="visit.address">Address</dt><dd><a href="https://www.google.com/maps/search/?api=1&amp;query=Lucent+Tattoo+Studio+Sofia" target="_blank" rel="noopener" data-i18n="visit.street">51 Veslets St., Sofia</a></dd></div>
+          <div><dt data-i18n="visit.hours">Hours</dt><dd data-i18n="visit.tbd">to be added</dd></div>
+          <div><dt data-i18n="visit.artists">Instagram</dt><dd class="visit__igs">
+            <a href="https://www.instagram.com/annetemma/" target="_blank" rel="noopener">@annetemma</a>
+            <a href="https://www.instagram.com/strugarev.ink/" target="_blank" rel="noopener">@strugarev.ink</a>
+            <a href="https://www.instagram.com/nikolay.genev/" target="_blank" rel="noopener">@nikolay.genev</a>
+            <a href="https://www.instagram.com/candyink.tattoo/" target="_blank" rel="noopener">@candyink.tattoo</a>
+            <a href="https://www.instagram.com/vlaykov.tattoo/" target="_blank" rel="noopener">@vlaykov.tattoo</a>
+            <a href="https://www.instagram.com/wigga.tatts/" target="_blank" rel="noopener">@wigga.tatts</a>
+          </dd></div>
+        </dl>
+      </div>
+      <a class="stamp" href="#visit" data-reveal><span data-i18n="nav.book">Book a session</span></a>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span class="foot__word">Lucent</span>
+    <span data-i18n="foot.line">Tattoo &amp; piercing studio</span>
+    <span>© <span data-year></span></span>
+  </footer>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="vendor/lenis.min.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>

@@ -16,6 +16,7 @@ js/main.js            torn-paper edges, language switch, GSAP/ScrollTrigger/Leni
 assets/video/hero.mp4 hero banner video (replace with the final film, keep the name)
 assets/img/paper.jpg  generated crumpled-paper texture
 vendor/               GSAP, ScrollTrigger, Lenis
+preview.html          copy of index.html without the document wrapper, used for the Claude artifact preview
 ```
 
 ## Still needed
